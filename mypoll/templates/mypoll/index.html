@@ -1,0 +1,13 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mypoll/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+{% if latest_question_list %}
+    <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'mypoll:detail' question.id %}">{{question.question_text}}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available</p>
+{% endif %}

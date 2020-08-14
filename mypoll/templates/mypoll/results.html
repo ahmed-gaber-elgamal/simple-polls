@@ -1,0 +1,12 @@
+{% load static %}
+<!--<link rel="stylesheet" type="text/css" href="{% static 'mypoll/style.css' %}">-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<h1>{{ question.question_text }}</h1>
+<ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }} {{choice.country.name}} </li>
+
+        <i class="flag4x {{ country.flag_css }}"><img src="{{ choice.country.flag }}" alt="img"></i>
+    {% endfor %}
+</ul>
+<a href="{% url 'mypoll:detail' question.id %}">vote again?</a>
